@@ -14,7 +14,7 @@ public class Main {
 
     public static void main(String[] args) {
         Scanner kb = new Scanner(System.in);
-        String str = kb.nextLine();
+        String str = kb.next();
         System.out.print(solution(str));
     }
 }
