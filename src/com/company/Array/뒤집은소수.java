@@ -1,24 +1,28 @@
 package com.company.Array;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class 뒤집은소수 {
-    public static int solution(int N){
-
-        //뒤집기
-
-
-        //에라토스테네스 체
-        int answer = 0;
-        int[] ch = new int[N+1];
-        for(int i=2; i<=N;i++){
-            if(ch[i]==0){
-                answer++;
-                for(int j=i;j<=N;j=j+i) ch[j]=1;
-            }
+    public static boolean isPrime(int num){
+        if(num==1) return false;
+        for(int i=2; i<num; i++){
+            if(num%i==0) return false;
         }
-
-
+        return true;
+    }
+    public static ArrayList<Integer> solution(int N, int[] arr){
+        ArrayList<Integer> answer = new ArrayList<>();
+        for(int i=2; i<N; i++){
+            int tmp =arr[i];
+            int res=0;
+            while(tmp>0){
+                int t = tmp%10;
+                res = res*10+t;
+                tmp = tmp/10;
+            }
+            if(isPrime(res)) answer.add(res);
+        }
 
         return answer;
     }
@@ -27,10 +31,12 @@ public class 뒤집은소수 {
         Scanner kb = new Scanner(System.in);
         int N = kb.nextInt();
         int[] arr = new int[N];
-        for(int i; i<N; i++){
-            
+        for(int i=0; i<N; i++){
+            arr[i]= kb.nextInt();
+        }
+        for (int x : solution(N, arr)){
+            System.out.print(x + " ");
         }
 
-        System.out.println(solution(N));
     }
 }
