@@ -13,7 +13,7 @@ public class 뒤집은소수 {
     }
     public static ArrayList<Integer> solution(int N, int[] arr){
         ArrayList<Integer> answer = new ArrayList<>();
-        for(int i=2; i<N; i++){
+        for(int i=0; i<N; i++){
             int tmp =arr[i];
             int res=0;
             while(tmp>0){
