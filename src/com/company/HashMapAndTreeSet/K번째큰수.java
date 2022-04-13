@@ -1,35 +1,28 @@
 package com.company.HashMapAndTreeSet;
 
+
 import java.util.*;
-;
 
 public class K번째큰수 {
-    public static int solution(int n, int k, Integer[] arr){
-        int answer = 0;
-        List<Integer> sumList = new ArrayList<>();
-        Arrays.sort(arr, Collections.reverseOrder());
+    public static int solution(int n, int k, int[] arr){
+        int answer = -1;
+        TreeSet<Integer> Tset = new TreeSet<>(Collections.reverseOrder());
 
-        for (int i =0; i<arr.length;i++){
-            System.out.println(arr[i]);
+        for(int i=0; i<n-2; i++){
+            for(int j=i+1; j<n-1;j++){
+                for(int l=j+1; l<n; l++){
+                    Tset.add(arr[i]+arr[j]+arr[l]);
+                }
+            }
         }
 
-        System.out.println("#########");
-        int sum=0;
-        sum=arr[0]+arr[1];
-
-        int lt=0;
-        for (int rt=k-1; rt<n; rt++){
-            sum += arr[rt];
-            sumList.add(sum);
-            sum -= arr[lt++];
+        int cnt = 0;
+        for(int x : Tset){
+            cnt++;
+            if(cnt==k){
+                return x;
+            }
         }
-
-        Collections.sort(sumList, Collections.reverseOrder());
-        for (int i =0; i<sumList.size();i++){
-            System.out.println(sumList.get(i));
-        }
-
-        answer = sumList.get(k-1);
 
         return answer;
     }
@@ -38,7 +31,7 @@ public class K번째큰수 {
         Scanner scanner = new Scanner(System.in);
         int n = scanner.nextInt();
         int k = scanner.nextInt();
-        Integer[] arr = new Integer[n];
+        int[] arr = new int[n];
         for (int i = 0; i<n; i++){
             arr[i] = scanner.nextInt();
         }
