@@ -3,12 +3,24 @@ package com.company.StackAndQueue;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.Stack;
 
 public class 괄호문자제거 {
     public static String solution(String str){
         String answer="";
-        List<Character> stack = new ArrayList<>();
-        
+        Stack<Character> stack = new Stack<>();
+
+        for (char c : str.toCharArray() ){
+            if(c == ')'){
+                while(stack.pop() != '(');
+            }else{
+                stack.add(c);
+            }
+        }
+        for (int i=0; i<stack.size(); i++){
+            answer += stack.get(i);
+        }
+
         return answer;
     }
 
